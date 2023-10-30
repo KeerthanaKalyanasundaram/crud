@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Customised CSS -->
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <!-- Navigation Bar -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <nav>
+                    <a class="logo">Art Hub</a>
+                    <ul>
+                       <li class="active"><a href="#"></a></li>
+                       <li><a href="#"></a></li>
+                       <li><a href="#"></a></li>
+                       <li><a href="#"></a></li>
+                       <li><a href="#"></a></li>
+                       <li><span>Welcome <span class="loginCandidate" id="loginCandidate"></span></span><img class="loginProfile" id="loginProfile"  onclick="openProfileDetail()" /></li>
+                       <li></li>
+                    </ul>
+               </nav>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4>Registration Form</h4>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="Name">Name</label>
+                                        <input type="text" id="Name" placeholder="Name" tabindex="1"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="Age">Age</label>
+                                        <input type="number" id="Age" placeholder="Age" tabindex="2"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label  for="Gender">Choose Your Gender</label>
+                                        <select id="Gender" tabindex="3">
+                                            <option selected value="0">-- Select Gender --</option>
+                                            <option>Female</option>
+                                            <option>Male</option>
+                                            <option>Non-Binary/Non-Conforming</option>
+                                            <option>Prefer Not To Respond</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="Email">Email</label>
+                                        <input type="text" id="Email" placeholder="Email Id" tabindex="5"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="Password" placeholder="Password" tabindex="6"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" id="confirmPassword" placeholder="Confirm Password" tabindex="7"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text"id="Address" placeholder="Address" tabindex="4"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div>
+                                        <label for="candidatePhoto">Candidate Photo</label>
+                                        <input type="file" id="candidatePhoto" style="margin-top: 5px;" accept="image/png, image/gif, image/jpeg" tabindex="8" onchange="onCandidatePhotoChanged()" />
+                                        <img style="width: 100px" id="imgCandidatePhoto" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="alert alert-danger" role="alert" id="alertMessage">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <button class="btn btn-success" id="button">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Table -->
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 style="display: inline-block;">Registered List</h4>
+                                    <button type="button" class="btn btn-success btn-xs btn-count" id="candidatesCount">
+                                    </button>
+                                    <div class="checkbox">
+                                        <label for="checkbox" style="font-weight: bold;"><input type="checkbox" id="checkbox" class="CheckBox" onchange="showCandidateInfoCard()"/>Grid View</label>
+                                    </div>
+                                </div>
+                                <div class="body">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive" id="candidateList">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>  
+                </div>
+
+            </div>
+        </div>  
+    </div>
+    
+    <!-- Edit Registration Data Modal (Trigger By Edit Button) -->
+    <div class="modal fade" id="modalEditCandidate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="exampleModalLabel">Edit Registration Data</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="Name">Name</label>
+                                            <input type="text" id="editName" placeholder="Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="Age">Age</label>
+                                            <input type="number" id="editAge" placeholder="Age"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label  for="Gender">Choose Your Gender</label>
+                                            <select id="editGender">
+                                                <option selected>-- Select Gender --</option>
+                                                <option>Female</option>
+                                                <option>Male</option>
+                                                <option>Non-Binary/Non-Conforming</option>
+                                                <option>Prefer Not To Respond</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="Email">Email</label>
+                                            <input type="text" id="editEmail" placeholder="Email Id"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="Password">Password</label>
+                                            <input type="text" id="editPassword" placeholder="Password"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" id="editAddress" placeholder="Address"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                                        <div>
+                                            <label for="candidatePhoto">Candidate Photo</label>
+                                            <input type="file" id="editcandidatePhoto" style="margin-top: 5px;" accept="image/png, image/gif, image/jpeg" tabindex="8" onchange="onEditCandidatePhotoChanged()" />
+                                            <img style="width: 100px" id="editImgCandidatePhoto" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <button class="btn btn-success" id="update" onclick="updateCandidate()">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation modal (Trigger By Delete Button) -->
+    <div class="modal fade bd-example-modal-sm" id="modalDeleteCandidate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete?</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h6>Do You Want To Delete The Data Of <span id="deleteCandidate"></span>?</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" id="Delete" onclick="deleteCandidateInfo()">Yes</button>
+                    <button class="btn btn-sm btn-warning" id="Cancel" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Open Login Candidate ProfileOption Modal (Trigger By Clicking LoginCandidate Profile Image ) -->
+    <div class="modal fade bd-example-modal-sm" id="modalProfileDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modalViewDetail" role="document">
+            <div class="modal-content modal-profile-img">
+                <div class="modal-body profileDetail">
+                    <div class="body">
+                        <img class="imgProfilePhoto" id="imgProfilePhoto" /><span class="candidateProfile" id="candidateProfile"></span>
+                    </div>
+                    <hr>
+                    <div class="profileOptions ">
+                        <a onclick="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Open Candidate Info Modal (Trigger By Clicking Profile Image ) -->
+    <div class="modal fade bd-example-modal-sm" id="modalViewCandidate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <span style="font-weight: bold;">Name: </span><span id="viewCandidateName"></span>
+                    </div>
+                    <div>
+                        <img id="viewCandidatePhoto"  class="viewCandidatePhoto" onclick="openViewCandidateImg()" />
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Age: </span><span id="viewCandidateAge"></span>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Gender: </span><span id="viewCandidateGender"></span>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Email: </span><span id="viewCandidateEmail"></span>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Password: </span><span id="viewCandidatePassword"></span>
+                    </div>
+                    <div>
+                        <span style="font-weight: bold;">Address: </span><span id="viewCandidateAddress"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Open View Candidate Image Modal (Trigger By Clicking Profile Image ) -->
+    <div class="modal fade bd-example-modal-sm" id="modalViewCandidatePhoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog-sm modalView" role="document">
+            <div class="modal-content modal-view-candidatephoto">
+                <div class="modal-body" style="padding: 0px;">
+                    <img id="openViewCandidatePhoto"  class="openViewCandidatePhoto" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Javascript -->
+    <script type="text/javascript">
+        var Arr=[], LSData, button, selectedCandidateId = null, selectedCandidatePhoto = null, selectedCandidateName = null, selectedEditedCandidatePhoto = null;
+        
+        $(document).ready(() => {
+            //Login Protocols
+            if(localStorage.getItem("authenticated") != "true")
+                window.location.href = "file:///C:/Users/keert/OneDrive/Desktop/candidates/login.html";
+            else{
+                let authenticatedProfile = localStorage.getItem("LoginCandidatePhoto");
+                $("#loginProfile, #imgProfilePhoto").attr({ "src": "data:image/png;base64, " + authenticatedProfile });
+
+                let authenticatedCandidate = localStorage.getItem("LoginCandidateName");
+                $("#loginCandidate,#candidateProfile").html(authenticatedCandidate);
+            } 
+
+            $("#alertMessage").addClass("hide");
+            $("#table").removeClass("hide");
+            getAllCandidates("list");
+            
+            $("#button").click(() => {
+                //Input Data Validation Conditions And Alert Message
+                $("#alertMessage").addClass("hide");
+                let isValid = true, message;
+
+                if($.trim($("#Name").val()) == "") {
+                    isValid = false;
+                    message = "Enter Name";
+                }
+                else if(!(/^[a-zA-Z]+$/.test( $.trim($("#Name").val())))) {
+                    isValid = false;
+                    message = "Enter Valid Name In Alphabets";
+                }
+                else if($.trim($("#Age").val()) == "") {
+                    isValid = false;
+                    message = "Enter Age";
+                }
+                else if($.trim($("#Gender").val()) == "0") {
+                    isValid = false;
+                    message = "Select Gender";
+                }
+                else if($.trim($("#Address").val()) == "") {
+                    isValid = false;
+                    message = "Enter Address";
+                }
+                else if($.trim($("#Email").val()) == "") {
+                    isValid = false;
+                    message = "Enter Email";
+                }
+                else if(!(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test($.trim($("#Email").val())))) {
+                    isValid = false;
+                    message = "Enter valid Email";
+                }
+                else if($.trim($("#Password").val()) == "") {
+                    isValid = false;
+                    message = "Enter Password";
+                }
+                else if(($.trim($("#Password").val())).length <= 7 ) {
+                    isValid = false;
+                    message = "Password Must Be Atleast 8 Characters";
+                }
+                else if($.trim($("#confirmPassword").val()) == "") {
+                    isValid = false;
+                    message = "Enter Confirm Password";
+                }
+                else if(($.trim($("#Password").val())) !== ($.trim($("#confirmPassword").val()))) {
+                    isValid = false;
+                    message = "Password Mismatch"
+                }
+
+                if(isValid) {
+                    let candidate = {
+                        name: $("#Name").val(),  
+                        age: $("#Age").val(), 
+                        gender: $("#Gender").val(),
+                        email: $("#Email").val(), 
+                        address: $("#Address").val(),
+                        password: $("#confirmPassword").val(),
+                        image: selectedCandidatePhoto
+                    };
+                    
+                    $.ajax({
+                        url: "http://localhost:3000/candidates",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(candidate),
+                        success : function(result) {
+                            resetFormFields();
+                            getAllCandidates();
+                        },
+                        error : function(error) {
+                            console.error("Failed");
+                        }
+                    })
+                }
+                else {
+                    if(message) {
+                        $("#alertMessage").text(message);
+                        $("#alertMessage").removeClass("hide");
+                    }
+                }
+            });
+        }); 
+
+        // Dynamic Table 
+        function loadCandidatesInList(data) {
+            $("#candidateList").html("");
+
+            $("#candidateList").append(
+                $("<table>").attr({ "id": "table" }).append(
+                     $("<thead>").attr({"class":"tableHead"}).append(
+                        $("<tr>").attr({"class":"tableRow"}).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Name")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Image")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Age")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Gender")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Email")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Address")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Password")
+                        ).append(
+                            $("<th>").attr({"class":"tableHead"}).append("Action")
+                        )
+                    ) 
+                ).append(
+                    $("<tbody>").attr({"id":"tableBody"}).append()
+                )  
+            )
+            
+            if(data.length){
+                for(var i=0;i<data.length;i++){
+                    if(data[i].name) {
+                        $("#tableBody").append(
+                            $("<tr>").attr({"class":"tableRow"}).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    data[i].name
+                                )
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    $("<img>").attr({ "src": data[i].image ? "data:image/png;base64, " + data[i].image : "./images/avatar.png", "class":"imgInTable" })
+                                )
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    data[i].age
+                                )
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    data[i].gender
+                                )
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    data[i].email
+                                )    
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    data[i].address
+                                )
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    data[i].password
+                                )
+                            ).append(
+                                $("<td>").attr({"class":"tableData"}).append(
+                                    $("<button>").attr({ "class": "btn btn-xs btn-primary", "onclick": "javascript:openEditModal(\'" + JSON.stringify(data[i]) + "\')" }).append("Edit")
+                                ).append(
+                                    $("<button>").attr({ "class": "btn btn-xs btn-danger", "style": "margin-left: 10px;", "onclick": "javascript:openDeleteConfirmationModal(\'" + data[i].id + "\' , \'" + data[i].name + "\')" }).append("Delete")
+                                ).append(
+                                    $("<button>").attr({ "class": "btn btn-xs btn-info", "style": "margin-left: 10px;", "onclick": "javascript:openViewModal(\'" + JSON.stringify(data[i]) + "\')" }).append("View")
+                                )
+                            )
+                        )
+                    }
+                }  
+            }
+        }
+        
+        // To Reset The Registration Form
+        function resetFormFields() {
+            $('#Name, #Age, #Email, #Address, #Password, #confirmPassword, #candidatePhoto').val("");
+            $('#Gender').val("0");
+            $("#imgCandidatePhoto").attr({ src: "" });
+            selectedCandidatePhoto = null;
+        }
+        
+        //To Edit And Update Candidate Info
+        function openEditModal(candidateInfo) {
+            let data = JSON.parse(candidateInfo);
+            selectedCandidateId = data.id;
+
+            $("#editName").val(data.name);
+            $("#editAge").val(data.age);
+            $("#editGender").val(data.gender);
+            $("#editEmail").val(data.email);
+            $("#editAddress").val(data.address);
+            $("#editPassword").val(data.password);
+            $("#editImgCandidatePhoto").attr({ "src": "data:image/png;base64, " + data.image });
+            selectedEditedCandidatePhoto = data.image;
+
+            $("#modalEditCandidate").modal("show");
+        }
+
+        function updateCandidate() {
+            let isValid = true, message;
+
+            if($.trim($("#editName").val()) == "") {
+                isValid = false;
+                message = "Enter Name";
+            }
+            else if(!(/^[a-zA-Z]+$/.test( $.trim($("#editName").val())))) {
+                isValid = false;
+                message = "Enter Valid Name In Alphabets";
+            }
+            else if($.trim($("#editAge").val()) == "") {
+                isValid = false;
+                message = "Enter Age";
+            }
+            else if($.trim($("#editGender").val()) == "0") {
+                isValid = false;
+                message = "Select Gender";
+            }
+            else if($.trim($("#editAddress").val()) == "") {
+                isValid = false;
+                message = "Enter Address";
+            }
+            else if($.trim($("#editEmail").val()) == "") {
+                isValid = false;
+                message = "Enter Email";
+            }
+            else if(!(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test($.trim($("#editEmail").val())))) {
+                isValid = false;
+                message = "Enter valid Email";
+            }
+            else if($.trim($("#editPassword").val()) == "") {
+                isValid = false;
+                message = "Enter Password";
+            }
+            else if(($.trim($("#editPassword").val())).length <= 7 ) {
+                isValid = false;
+                message = "Password Must Be Atleast 8 Characters";
+            }
+
+            if(isValid) {
+                let candidate = {
+                    name: $("#editName").val(),  
+                    age: $("#editAge").val(), 
+                    gender: $("#editGender").val(),
+                    email: $("#editEmail").val(), 
+                    address: $("#editAddress").val(),
+                    password:$("#editPassword").val(),
+                    image: selectedEditedCandidatePhoto
+                };
+
+                $.ajax({
+                    url: "http://localhost:3000/candidates/" + selectedCandidateId,
+                    method: "PUT",
+                    contentType: 'application/json',
+                    data:JSON.stringify(candidate),
+                    success: function(result) {
+                        $("#modalEditCandidate").modal("hide");
+                        getAllCandidates();
+                    },
+                    error: function(error) {
+                        console.error("Failed");
+                    }
+                })
+            }
+            else {
+                if(message) {
+                    $("#alertMessage").text(message);
+                    $("#alertMessage").removeClass("hide");
+                }
+            }
+        }
+
+        function onEditCandidatePhotoChanged() {
+            let candidatePhoto = document.getElementById('editcandidatePhoto').files[0];
+            convertEditFilesToBase64(candidatePhoto);
+        }
+
+        function convertEditFilesToBase64(file) {
+            let reader = new FileReader();
+            
+            reader.onload = function () {
+                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                selectedEditedCandidatePhoto = base64String;
+                $("#editimgCandidatePhoto").attr({ "src": "data:image/png;base64, " + selectedEditedCandidatePhoto });
+            }
+
+            reader.readAsDataURL(file);
+        }
+        
+        //To Delete Selected Candidate Info
+        function openDeleteConfirmationModal(candidateId,candidateName) {
+            selectedCandidateId = candidateId;
+            selectedCandidateName = candidateName;
+            $("#modalDeleteCandidate").modal("show");
+            $("#deleteCandidate").html(selectedCandidateName);
+        }
+        
+        function deleteCandidateInfo(){
+            $.ajax({
+                url: "http://localhost:3000/candidates/" + selectedCandidateId,
+                method: "DELETE",
+                success : function(result) {
+                    $("#modalDeleteCandidate").modal("hide");
+                    getAllCandidates();
+                },
+                error : function(error) {
+                    console.error("Failed");
+                }   
+            });
+        }
+
+        //To Show Candidate Info Individually In Grid view If CheckBox Is Checked
+        function showCandidateInfoCard(){
+            if($("#checkbox").is(":checked")) {
+                getAllCandidates("card");
+            }
+            else {
+                getAllCandidates("list");
+            }
+        }
+        
+        //To Get Candidate Data In Table Or In Grid View
+        function getAllCandidates(type) {
+            $.ajax({
+                url: "http://localhost:3000/candidates" ,
+                method: "GET",
+                success : function(result) {
+                    if(result)
+                        $("#candidatesCount").html(result.length);
+
+                    if(type == "card")
+                        loadCandidatesInCards(result);
+                    else
+                        loadCandidatesInList(result);
+                },
+                error : function(error) {
+                    console.error("Failed");
+                }   
+            });
+        } 
+
+        function loadCandidatesInCards(data){
+            $("#candidateList").html("");
+            
+            if(data.length){
+                for(var j = 0; j < data.length; j++){
+                    $("#candidateList").append(
+                        $("<div>").attr({ "class": "col-lg-3 col-md-4 col-sm-6 col-xs-12"}).append(
+                            $("<div>").attr({"class":"card candidates"}).append(
+                                $("<div>").attr({"class":"body"}).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<span>").attr({ "style":"font-weight:bold;" }).append("Name: ")
+                                    ).append(
+                                        data[j].name 
+                                    )
+                                ).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<img>").attr({ "src": data[j].image ? "data:image/png;base64, " + data[j].image : "./images/avatar.png", "class":"imgGridView" })   
+                                    )
+                                ).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<span>").attr({ "style":"font-weight:bold;" }).append("Age: ")  
+                                    ).append(
+                                        data[j].age
+                                    )
+                                ).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<span>").attr({ "style":"font-weight:bold;" }).append("Gender: ")  
+                                    ).append(
+                                        data[j].gender
+                                    )
+                                ).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<span>").attr({ "style":"font-weight:bold;" }).append("Email Id: ") 
+                                    ).append(
+                                        data[j].email
+                                    )
+                                ).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<span>").attr({ "style":"font-weight:bold;" }).append("Address: ")  
+                                    ).append(
+                                        data[j].address
+                                    )
+                                ).append(
+                                    $("<div>").attr({"class":"card-text"}).append(
+                                        $("<span>").attr({ "style":"font-weight:bold;" }).append("Password: ")  
+                                    ).append(
+                                        data[j].password
+                                    )
+                                )
+                            ).append(
+                                $("<div>").attr({"class":"footer"}).append(
+                                    $("<div>").attr({"class":"row"}).append(
+                                        $("<div>").attr({ "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12" }).append(
+                                            $("<button>").attr({ "class": "btn btn-xs btn-danger", "style": "margin-left: 10px;", "onclick": "javascript:openDeleteConfirmationModal(\'" + data[j].id + "\', \'" + data[j].name + "\')" }).append("Delete")
+                                        ).append(
+                                            $("<button>").attr({ "class": "btn btn-xs btn-primary", "onclick": "javascript:openEditModal(\'" + JSON.stringify(data[j]) + "\')" }).append("Edit")
+                                        ).append(
+                                            $("<button>").attr({ "class": "btn btn-xs btn-info", "style": "margin-right: 10px;", "onclick": "javascript:openViewModal(\'" + JSON.stringify(data[j]) + "\')" }).append("View")
+                                        ) 
+                                    ) 
+                                )   
+                            )
+                        )
+                    )
+                }
+            }
+        }
+
+        //To Convert Candidate Image Into Base64 And Viceversa
+        function onCandidatePhotoChanged() {
+            let candidatePhoto = document.getElementById('candidatePhoto').files[0];
+            convertFilesToBase64(candidatePhoto);
+        }
+
+        function convertFilesToBase64(file) {
+            let reader = new FileReader();
+            
+            reader.onload = function () {
+                base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                selectedCandidatePhoto = base64String;
+                $("#imgCandidatePhoto").attr({ "src": "data:image/png;base64, " + selectedCandidatePhoto });
+            }
+
+            reader.readAsDataURL(file);
+        }
+
+        //To Logout The Authenticated Candidate
+        function logout() {
+            localStorage.removeItem("authenticated");
+            localStorage.removeItem("LoginCandidatePhoto");
+            window.location.href="file:///C:/Users/keert/OneDrive/Desktop/candidates/login.html";
+        }
+       
+        //To Open Logout Option Of The Login Candidate
+        function openProfileDetail(){
+            $("#modalProfileDetail").modal("show");
+        }
+
+        //To View Selected Candidate
+        function openViewModal(candidateInfo) {
+            let data = JSON.parse(candidateInfo);
+
+            selectedCandidateId = data.id;
+
+            $("#viewCandidateName").html(data.name);
+            $("#viewCandidatePhoto").attr({ "src": "data:image/png;base64, " + data.image });
+            $("#viewCandidateAge").html(data.age);
+            $("#viewCandidateGender").html(data.gender);
+            $("#viewCandidateEmail").html(data.email);
+            $("#viewCandidateAddress").html(data.address);
+            $("#viewCandidatePassword").html(data.password);
+            $("#openViewCandidatePhoto").attr({ "src": "data:image/png;base64, " + data.image });
+            
+            $("#modalViewCandidate").modal("show");
+        }
+
+        function openViewCandidateImg() {
+            $("#modalViewCandidatePhoto").modal("show");
+        }
+    </script>
+</body>
+</html>

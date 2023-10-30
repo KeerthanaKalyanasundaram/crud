@@ -1,0 +1,12 @@
+{
+  "name": "projectone",
+  "version": "1.0.0",
+  "description": "practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "json-serve": "json-server --watch db.json"
+  },
+  "author": "",
+  "license": "ISC"
+}

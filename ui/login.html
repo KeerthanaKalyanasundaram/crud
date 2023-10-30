@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+     <!-- Boostrap -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <!-- Customised CSS-->
+     <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row vessel">
+                    <div id="LoginForm">
+                        <h1>Login</h1>
+                        <div class="inputSet">
+                            <label for="Email">Email</label>
+                            <input type="text" id="Email" placeholder="Email" autocomplete="off"/>
+                            <div class="error"></div>
+                        </div>
+                        <br>
+                        <div class="inputSet">
+                            <label for="Password">Password</label>
+                            <input type="password" id="Password" placeholder="Password" autocomplete="off" />
+                            <div class="error"></div>
+                        </div>
+                        <div>
+                            <div class="alert alert-danger" role="alert" id="alertMessage">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" onclick="checkCredentials()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!--Bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $("#alertMessage").addClass("hide");
+        });
+
+        function checkCredentials(){
+            $("#alertMessage").addClass("hide");
+
+            let isValid = true, message;
+            if($.trim($("#Email").val()) == "") {
+                isValid = false;
+                message = "Enter Email";
+            }
+            else if(!(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test($.trim($("#Email").val())))) {
+                isValid = false;
+                message = "Enter valid Email";
+            }
+            else if($.trim($("#Password").val()) == "") {
+                isValid = false;
+                message = "Enter Password";
+            }
+            
+            if(isValid) {
+                getAllValidCandidates();
+            }
+            else {
+                if(message) {
+                    $("#alertMessage").text(message);
+                    $("#alertMessage").removeClass("hide");
+                }
+            }   
+        }
+
+        function getAllValidCandidates() {
+            $.ajax({
+                url: "http://localhost:3000/candidates" ,
+                method: "GET",
+                success : function(result) {
+                    checkLoginDetails(result)
+                },
+                error : function(error) {
+                    console.error("Failed");
+                }   
+            });
+        }
+
+        function checkLoginDetails(data){
+            if(data.length){
+                // Without for loop
+                let index = data.findIndex((item) => item.email == $.trim($("#Email").val()));
+                
+                if(index > -1) {
+                    if(data[index].password == $.trim($("#Password").val())) {
+                        localStorage.setItem("authenticated", "true");
+                        localStorage.setItem("LoginCandidatePhoto",data[index].image);
+                        localStorage.setItem("LoginCandidateName",data[index].name);
+                        window.location.href="file:///C:/Users/keert/OneDrive/Desktop/candidates/home.html";
+                    }
+                    else {
+                        $("#alertMessage").text("Password is incorrect");
+                        $("#alertMessage").removeClass("hide");
+                    }
+                }
+                else {
+                    $("#alertMessage").text("Email id not found");
+                    $("#alertMessage").removeClass("hide");
+                }
+
+                // With for loop
+                // for(var i=0;i<data.length;i++){
+                //     if($.trim($("#Email").val()) == data[i].email)
+                //     {  
+                //         if($.trim($("#Password").val()) ==  data[i].password){
+                //                localStorage.setItem("LoginCandidatePhoto",data[i].image);
+                //                localStorage.setItem("LoginCandidateName",data[i].name);
+                //               window.location.href="file:///C:/Users/keert/OneDrive/Desktop/candidates/home.html";
+                //          }
+                //                
+                //         else {
+                //             $("#alertMessage").text("Wrong Password");
+                //             $("#alertMessage").removeClass("hide");
+                //         }
+
+                //         break;
+                //     }
+                //     else 
+                //     {
+                //         $("#alertMessage").text("Unknown Email id");
+                //         $("#alertMessage").removeClass("hide");
+                //     }
+                // }
+            }
+        }
+       
+    </script>
+</body>
+</html>
